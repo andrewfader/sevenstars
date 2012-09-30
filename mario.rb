@@ -19,9 +19,9 @@ class Mario < Chingu::GameObject
           set_ivar
         else
           instance_variable_set(ivar, Chingu::Animation.new(frames:
-            [Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}02.gif"),
-            Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}03.gif"),
-            Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}01.gif")])
+            [Gosu::Image.new($window, "./images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}02.gif"),
+            Gosu::Image.new($window, "./images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}03.gif"),
+            Gosu::Image.new($window, "./images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}01.gif")])
           )
         end
       end
