@@ -1,91 +1,79 @@
-# require 'chingu'
 class Mario < Chingu::GameObject
-  ANIMATION_SPEED = 8
   def button_down?(*args)
     $window.button_down?(*args)
   end
 
   def initialize options={}
     super(options.merge(image: Gosu::Image["./images/marioD02.gif"]))
-    @counter = 0
+    @x = 200
+    @y = 200
+  end
+
+  [nil,"d","u"].each do |ud|
+    [nil,"r","l"].each do |rl|
+      next if ud == rl
+      var = "#{ud}#{rl}".to_sym
+      ivar = "@#{var.to_s}".to_sym
+      define_method var do
+        if set_ivar = instance_variable_get(ivar)
+          set_ivar
+        else
+          instance_variable_set(ivar, Chingu::Animation.new(frames:
+            [Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}02.gif"),
+            Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}03.gif"),
+            Gosu::Image.new($window, "/media/Force/sevenstars/images/mario#{ud ? ud.upcase : ""}#{rl ? rl.upcase : ""}01.gif")])
+          )
+        end
+      end
+    end
   end
 
   def move_left
     @x -= 2
-    if @down || button_down?(Gosu::KbDown)
-      @image = Gosu::Image["./images/marioDL02.gif"]
-    elsif @up || button_down?(Gosu::KbUp)
-      @image = Gosu::Image["./images/marioUL02.gif"]
-    else
-      @image = Gosu::Image["./images/marioL02.gif"]
-    end
-
-    count
-    @left = true
-  end
-
-  def count
-    if @counter == ANIMATION_SPEED
-      @up = false
-      @down = false
-      @left = false
-      @right = false
-      @counter = 0
-    else
-      @counter+=1
+    unless button_down?(Gosu::KbUp)
+      @image = l.next
     end
   end
 
   def move_right
     @x += 2
-    if @down || button_down?(Gosu::KbDown)
-      @image = Gosu::Image["./images/marioDR02.gif"]
-    elsif @up || button_down?(Gosu::KbUp)
-      @image = Gosu::Image["./images/marioUR02.gif"]
-    else
-      @image = Gosu::Image["./images/marioR02.gif"]
+    unless button_down?(Gosu::KbDown) || button_down?(Gosu::KbUp)
+      @image = r.next
     end
-    count
-    @right = true
-  end
-
-  def halt_left
-
-  end
-
-  def halt_right
-
   end
 
   def move_up
     @y -= 2
-    if @left || button_down?(Gosu::KbLeft)
-      @image = Gosu::Image["./images/marioUL02.gif"]
-    elsif @right || button_down?(Gosu::KbRight)
-      @image = Gosu::Image["./images/marioUR02.gif"]
+    if button_down?(Gosu::KbLeft)
+      @image = ul.next
+    elsif button_down?(Gosu::KbRight)
+      @image = ur.next
     else
-      @image = Gosu::Image["./images/marioU02.gif"]
+      @image = u.next
     end
-    count
-    @up = true
   end
 
   def move_down
     @y += 2
-    if @left || button_down?(Gosu::KbLeft)
-      @image = Gosu::Image["./images/marioDL02.gif"]
-    elsif @right || button_down?(Gosu::KbRight)
-      @image = Gosu::Image["./images/marioDR02.gif"]
+    if button_down?(Gosu::KbLeft)
+      @image = dl.next
+    elsif button_down?(Gosu::KbRight)
+      @image = dr.next
     else
-      @image = Gosu::Image["./images/marioD02.gif"]
+      @image = d.next
     end
-    count
-    @down = true
   end
 
-  def halt_up
+  def halt
+    [nil,"d","u"].each do |ud|
+      [nil,"r","l"].each do |rl|
+        next if ud == rl
+        animation = self.send("#{ud}#{rl}".to_sym)
+        if animation.frames.include? @image
+          @image = animation.next while @image != animation.frames.first
+        end
+      end
+    end
   end
 
-  def halt_down
-  end
 end

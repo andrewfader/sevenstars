@@ -1,19 +1,19 @@
+GIT
+  remote: git://github.com/ippa/chingu.git
+  revision: f0d5d9a39c80dfda72e9f688a7f2b7916c27f8a4
+  specs:
+    chingu (0.9rc9)
+      gosu (>= 0.7.45)
+      gosu (>= 0.7.45)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    chingu (0.8.1)
-      crack
-      gosu (>= 0.7.25)
-      rest-client
-    crack (0.3.1)
     gosu (0.7.45)
-    mime-types (1.19)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  chingu
+  chingu!
   gosu

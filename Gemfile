@@ -1,3 +1,3 @@
 source 'http://rubygems.org'
 gem 'gosu'
-gem 'chingu'
+gem 'chingu', git: 'git://github.com/ippa/chingu.git'

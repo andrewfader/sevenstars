@@ -9,10 +9,10 @@ class Game < Chingu::Window
                     holding_right: :move_right,
                     holding_up: :move_up,
                     holding_down: :move_down,
-                    # released_left: :halt_left,
-                    # released_right: :halt_right,
-                    released_up: :halt_up,
-                    released_down: :halt_down }
+                    released_left: :halt,
+                    released_right: :halt,
+                    released_up: :halt,
+                    released_down: :halt }
   end
 end
 
