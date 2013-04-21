@@ -29,11 +29,36 @@ class Mario < Chingu::GameObject
     end
   end
 
+  def jump
+    @old_image = @image
+    @y -= @old_image.height
+    direction = {left: "L", right: "R", up: "U", down: ""}[@direction]
+    frames = (1..14).map do |index|
+      index = "0#{index}" if index.to_s.length == 1
+      Gosu::Image.new($window, "./images/mariojump#{direction}#{index}.gif")
+    end
+    @animation = Chingu::Animation.new(frames: frames, loop: false, delay: 25)
+  end
+
+  def draw
+    if @animation
+      unless @animation.last_frame?
+        @image = @animation.next
+      else
+        @animation = nil
+        @image = @old_image
+        @y += @old_image.height
+      end
+    end
+    super
+  end
+
   def move_left
     @x -= 2
     unless button_down?(Gosu::KbUp)
       @image = l.next
     end
+    @direction = :left
   end
 
   def move_right
@@ -41,6 +66,7 @@ class Mario < Chingu::GameObject
     unless button_down?(Gosu::KbDown) || button_down?(Gosu::KbUp)
       @image = r.next
     end
+    @direction = :right
   end
 
   def move_up
@@ -52,6 +78,7 @@ class Mario < Chingu::GameObject
     else
       @image = u.next
     end
+    @direction = :up
   end
 
   def move_down
@@ -63,6 +90,7 @@ class Mario < Chingu::GameObject
     else
       @image = d.next
     end
+    @direction = :down
   end
 
   def halt

@@ -12,7 +12,8 @@ class Game < Chingu::Window
                     released_left: :halt,
                     released_right: :halt,
                     released_up: :halt,
-                    released_down: :halt }
+                    released_down: :halt,
+                    space: :jump}
   end
 end
 
