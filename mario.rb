@@ -1,3 +1,4 @@
+require 'debugger'
 class Mario < Chingu::GameObject
   def button_down?(*args)
     $window.button_down?(*args)
