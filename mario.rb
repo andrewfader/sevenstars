@@ -48,6 +48,7 @@ class Mario < Chingu::GameObject
         @animation = nil
         @image = @old_image
         @y += @old_image.height
+        halt
       end
     end
     super
