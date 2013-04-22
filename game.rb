@@ -8,7 +8,6 @@ class Game < Chingu::Window
     super
     @bg = Background.create
     @mario = Mario.create
-    @items = []
 
     puts "enter name"
     @name = gets
@@ -30,33 +29,29 @@ class Game < Chingu::Window
     if @mario.x >= self.width
       @bg.x -= 10
       @mario.x -= 5
-      @items.each { |item| item.x -= 10 }
+      Item.all.each { |item| item.x -= 10 }
     end
 
     if @mario.x <= 0
       @bg.x += 10
       @mario.x += 5
-      @items.each { |item| item.x += 10 }
+      Item.all.each { |item| item.x += 10 }
     end
 
     if @mario.y >= self.height
       @bg.y -= 10
       @mario.y -= 5
 
-      @items.each { |item| item.y -= 10 }
+      Item.all.each { |item| item.y -= 10 }
     end
 
     if @mario.y <= 0
       @bg.y += 10
       @mario.y += 5
-      @items.each { |item| item.y += 10 }
+      Item.all.each { |item| item.y += 10 }
     end
 
     super
-  end
-
-  def item_add item
-    @items << item
   end
 
   def item_presence itemx,itemy
@@ -64,13 +59,13 @@ class Game < Chingu::Window
     @found = nil
     item = []
     item << (itemx-check_range..itemx+check_range).to_a.find do |testx|
-      @found = @items.find do |item|
+      @found = Item.all.find do |item|
         item.x == testx
       end
     end
 
     item << (itemy-check_range..itemy+check_range).to_a.find do |testy|
-      @found = @items.find do |item|
+      @found = Item.all.find do |item|
         item.y == testy
       end
     end

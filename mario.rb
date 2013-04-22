@@ -122,7 +122,7 @@ class Mario < Chingu::GameObject
   end
 
   def spawn_item
-    $window.item_add(Item.create({location: [@x,@y], creator: $window.name}))
+    Item.create({location: [@x,@y], creator: $window.name})
   end
 
 end
