@@ -1,6 +1,7 @@
 ROOT_PATH = File.dirname(File.expand_path(__FILE__))
 require 'chingu'
 require './mario'
+require './item'
 class Game < Chingu::Window
   attr_accessor :name
   def initialize
@@ -59,15 +60,16 @@ class Game < Chingu::Window
   end
 
   def item_presence itemx,itemy
+    check_range = 20
     @found = nil
     item = []
-    item << (itemx-25..itemx+25).to_a.find do |testx|
+    item << (itemx-check_range..itemx+check_range).to_a.find do |testx|
       @found = @items.find do |item|
         item.x == testx
       end
     end
 
-    item << (itemy-25..itemy+25).to_a.find do |testy|
+    item << (itemy-check_range..itemy+check_range).to_a.find do |testy|
       @found = @items.find do |item|
         item.y == testy
       end
@@ -81,51 +83,6 @@ class Game < Chingu::Window
     end
   end
 
-end
-
-class Item < Chingu::GameObject
-  attr_accessor :creator, :url
-  def initialize options
-    location = options[:location]
-    creator = options[:creator]
-    options = {}
-    super(options.merge(image: Gosu::Image["./images/item2.png"]))
-    @x = location[0]
-    @y = location[1]
-    @z = 99999
-    update
-    getUrl
-  end
-
-  def getUrl
-    puts "url"
-    @url = gets
-    @image = Gosu::Image["./images/item.png"]
-  end
-
-  def jump
-    unless @last_time
-      @y -= @image.height
-      @image = Gosu::Image["./images/item3.png"]
-      @last_time = Gosu::milliseconds()
-    end
-  end
-
-  def update
-    if @last_time && (Gosu::milliseconds - @last_time) >= 230
-      @image = Gosu::Image["./images/item.png"]
-      @y += @image.height
-      @last_time = nil
-    end
-    super
-  end
-
-  def open
-    if item = $window.item_presence(@x,@y-@old_image.height)
-      item.jump
-      Launchy.open(item.url)
-    end
-  end
 end
 
 class Background < Chingu::GameObject

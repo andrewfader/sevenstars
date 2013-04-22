@@ -6,6 +6,7 @@ class Mario < Chingu::GameObject
   end
 
   def initialize options={}
+    @jump = Gosu::Sample.new("jump.wav")
     super(options.merge(image: Gosu::Image["./images/marioD02.gif"]))
     @x = 200
     @y = 200
@@ -32,6 +33,7 @@ class Mario < Chingu::GameObject
 
   def jump
     unless @jumping
+      @jump.play
       @jumping = true
       @old_image = @image
       @y -= @old_image.height
