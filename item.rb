@@ -18,9 +18,17 @@ class Item < Chingu::GameObject
   def getUrl
     puts "url"
     url = gets
-    begin
-      @url = URI(url).to_s
-    rescue URI::InvalidURIError
+
+    if url =~ URI::regexp
+      begin
+        @url = URI(url).to_s
+        @text = Chingu::Text.new("#{@creator}\n#{@url}", x: @x + 5, y: @y + 5, zorder: 999999, factor_x: 2.0)
+      rescue URI::InvalidURIError
+        puts 'invalid url'
+        self.destroy
+        @image = nil
+      end
+    else
       puts 'invalid url'
       self.destroy
       @image = nil
