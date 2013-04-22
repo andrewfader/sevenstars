@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ippa/chingu.git
-  revision: f0d5d9a39c80dfda72e9f688a7f2b7916c27f8a4
+  revision: 6245c7d07a61fcb9e8468656ec65c02f3dcfcd23
   specs:
     chingu (0.9rc9)
       gosu (>= 0.7.45)
@@ -20,7 +20,7 @@ GEM
     debugger-ruby_core_source (1.2.0)
     faster_xml_simple (0.5.0)
       libxml-ruby (>= 0.3.8.4)
-    gosu (0.7.45)
+    gosu (0.7.47.1)
     httpclient (2.3.3)
     json (1.7.7)
     launchy (2.3.0)
