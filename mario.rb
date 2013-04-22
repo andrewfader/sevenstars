@@ -1,3 +1,4 @@
+require 'launchy'
 require 'debugger'
 class Mario < Chingu::GameObject
   def button_down?(*args)
@@ -34,12 +35,20 @@ class Mario < Chingu::GameObject
       @jumping = true
       @old_image = @image
       @y -= @old_image.height
+      open
       direction = {left: "L", right: "R", up: "U", down: ""}[@direction]
       frames = (1..14).map do |index|
         index = "0#{index}" if index.to_s.length == 1
         Gosu::Image.new($window, "./images/mariojump#{direction}#{index}.gif")
       end
       @animation = Chingu::Animation.new(frames: frames, loop: false, delay: 25)
+    end
+  end
+
+  def open
+    if item = $window.item_presence(@x,@y-@old_image.height)
+      item.jump
+      Launchy.open(item.url)
     end
   end
 
@@ -108,6 +117,10 @@ class Mario < Chingu::GameObject
         end
       end
     end
+  end
+
+  def spawn_item
+    $window.item_add(Item.create({location: [@x,@y], creator: $window.name}))
   end
 
 end
