@@ -23,6 +23,7 @@ class Item < Chingu::GameObject
       begin
         @url = URI(url).to_s
         @text = Chingu::Text.new("#{@creator}\n#{@url}", x: @x + 5, y: @y + 5, zorder: 999999, factor_x: 2.0)
+        @text.draw
       rescue URI::InvalidURIError
         puts 'invalid url'
         self.destroy

@@ -26,29 +26,16 @@ class Game < Chingu::Window
 
   def update
 
-    if @mario.x >= self.width
-      @bg.x -= 10
-      @mario.x -= 5
-      Item.all.each { |item| item.x -= 10 }
-    end
+    a = -1 if (width = (@mario.x >= self.width)) || @mario.y >= self.height
+    a = 1 if (width = (@mario.x <= 0)) || @mario.y <= 0
+    if a
+      width ? b = "x" : b = "y"
 
-    if @mario.x <= 0
-      @bg.x += 10
-      @mario.x += 5
-      Item.all.each { |item| item.x += 10 }
-    end
+      c = 10
 
-    if @mario.y >= self.height
-      @bg.y -= 10
-      @mario.y -= 5
-
-      Item.all.each { |item| item.y -= 10 }
-    end
-
-    if @mario.y <= 0
-      @bg.y += 10
-      @mario.y += 5
-      Item.all.each { |item| item.y += 10 }
+      @bg.send("#{b}=",@bg.send(b) + (c * a))
+      @mario.send("#{b}=",@mario.send(b) + c/2*a)
+      Item.all.each { |item| item.send("#{b}=",item.send(b) + c*a) }
     end
 
     super
