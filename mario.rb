@@ -1,5 +1,5 @@
 require 'launchy'
-require 'debugger'
+# require 'debugger'
 class Mario < Chingu::GameObject
   def button_down?(*args)
     $window.button_down?(*args)
@@ -122,7 +122,7 @@ class Mario < Chingu::GameObject
   end
 
   def spawn_item
-    Item.create({location: [@x,@y], creator: $window.name})
+    Item.create({location: [@x,@y], creator: "foo"})
   end
 
 end

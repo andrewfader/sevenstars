@@ -1,16 +1,15 @@
-ROOT_PATH = File.dirname(File.expand_path(__FILE__))
 require 'chingu'
-require './mario'
-require './item'
+require_relative 'mario'
+require_relative 'item'
 class Game < Chingu::Window
-  attr_accessor :name
+  # attr_accessor :name
   def initialize
     super
     @bg = Background.create
     @mario = Mario.create
 
-    puts "enter name"
-    @name = gets
+    # puts "enter name"
+    # @name = gets
 
     @mario.input = {holding_left: :move_left,
                     holding_right: :move_right,
