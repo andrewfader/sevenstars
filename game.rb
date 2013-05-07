@@ -3,14 +3,10 @@ require 'chingu'
 require './mario'
 require './item'
 class Game < Chingu::Window
-  attr_accessor :name
   def initialize
     super
     @bg = Background.create
     @mario = Mario.create
-
-    puts "enter name"
-    @name = gets
 
     @mario.input = {holding_left: :move_left,
                     holding_right: :move_right,
@@ -54,29 +50,6 @@ class Game < Chingu::Window
     super
   end
 
-  def item_presence itemx,itemy
-    check_range = 20
-    @found = nil
-    item = []
-    item << (itemx-check_range..itemx+check_range).to_a.find do |testx|
-      @found = Item.all.find do |item|
-        item.x == testx
-      end
-    end
-
-    item << (itemy-check_range..itemy+check_range).to_a.find do |testy|
-      @found = Item.all.find do |item|
-        item.y == testy
-      end
-    end
-
-    if item.first && item.last
-      puts @found.url
-      @found
-    else
-      nil
-    end
-  end
 
 end
 
