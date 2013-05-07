@@ -31,7 +31,7 @@ class Item < Chingu::GameObject
 
   def update
     if @last_time && (Gosu::milliseconds - @last_time) >= 230
-      @image = Gosu::Image["./images/item.png"]
+      @image = Gosu::Image["./images/item2.png"]
       @y += @image.height
       @last_time = nil
     end
