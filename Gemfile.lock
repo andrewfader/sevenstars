@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ippa/chingu.git
-  revision: 6245c7d07a61fcb9e8468656ec65c02f3dcfcd23
+  revision: c900235a0f314c3035d7eaed312616e3646fa37f
   specs:
     chingu (0.9rc9)
       gosu (>= 0.7.45)
@@ -9,7 +9,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    gosu (0.7.47.1)
+    gosu (0.7.50)
 
 PLATFORMS
   ruby
