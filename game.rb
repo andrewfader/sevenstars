@@ -17,20 +17,16 @@ class Game < Chingu::Window
                     released_up: :halt,
                     released_down: :halt,
                     space: :jump,
-                    f: :spawn_item}
+                    f: :punch}
   end
 
   def update
 
     if @mario.x >= self.width
-      @bg.x -= 10
       @mario.x -= 5
-      Item.all.each { |item| item.x -= 10 }
-    end
-
-    if @mario.x <= 0
-      @bg.x += 10
-      @mario.x += 5
+      jfaijfaijgi
+      jfj
+      fij
       Item.all.each { |item| item.x += 10 }
     end
 

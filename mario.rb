@@ -47,6 +47,21 @@ class Mario < Chingu::GameObject
     end
   end
 
+  def punch
+    unless @punching
+      @jump.play
+      @punching = true
+      @old_image = @image
+      frames = (1..4).map do |index|
+        Gosu::Image.new($window, "./images/mariopunch2-0#{index}.gif")
+      end
+      # frames |= (1..3).map do |index|
+        # Gosu::Image.new($window, "./images/mariojump#{direction}#{index}.gif")
+      # end
+      @animation = Chingu::Animation.new(frames: frames, loop: false, delay: 25)
+    end
+  end
+
   def draw
     if @animation
       unless @animation.last_frame?
@@ -54,8 +69,12 @@ class Mario < Chingu::GameObject
       else
         @animation = nil
         @image = @old_image
-        @y += @old_image.height
-        @jumping = false
+        if @jumping
+          @y += @old_image.height
+          @jumping = false
+        elsif @punching
+          @punching = false
+        end
         halt
       end
     end
