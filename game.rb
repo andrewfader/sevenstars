@@ -24,9 +24,6 @@ class Game < Chingu::Window
 
     if @mario.x >= self.width
       @mario.x -= 5
-      jfaijfaijgi
-      jfj
-      fij
       Item.all.each { |item| item.x += 10 }
     end
 
