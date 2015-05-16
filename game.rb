@@ -17,7 +17,8 @@ class Game < Chingu::Window
                     released_up: :halt,
                     released_down: :halt,
                     space: :jump,
-                    f: :punch}
+                    f: :punch,
+                    g: :spawn_item}
   end
 
   def update
