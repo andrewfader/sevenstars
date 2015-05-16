@@ -4,12 +4,11 @@ GIT
   specs:
     chingu (0.9rc9)
       gosu (>= 0.7.45)
-      gosu (>= 0.7.45)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    gosu (0.8.6)
+    gosu (0.9.0)
 
 PLATFORMS
   ruby

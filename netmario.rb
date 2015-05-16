@@ -1,24 +1,9 @@
-class Mario < Chingu::GameObject
-  def button_down?(*args)
-    $window.button_down?(*args)
-  end
-
+class Netmario < Chingu::GameObject
   def initialize options={}
     @jump = Gosu::Sample.new("jump.wav")
     super(options.merge(image: Gosu::Image["./images/marioD02.gif"]))
-    @x = 200
-    @y = 200
-
-    self.input = {holding_left: :move_left,
-                    holding_right: :move_right,
-                    holding_up: :move_up,
-                    holding_down: :move_down,
-                    released_left: :halt,
-                    released_right: :halt,
-                    released_up: :halt,
-                    released_down: :halt,
-                    space: :jump,
-                    f: :punch}
+    @x = 200 
+    @y = 200 
   end
 
   [nil,"d","u"].each do |ud|
