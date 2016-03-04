@@ -1,6 +1,4 @@
 source 'http://rubygems.org'
 gem 'gosu'
-gem 'chingu', git: 'git://github.com/ippa/chingu.git'
-# gem 'debugger'
-# gem 'launchy'
-# gem 'renet'
+gem 'chingu', github: 'andrewfader/chingu'
+gem 'debugger'
