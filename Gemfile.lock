@@ -41,7 +41,7 @@ GEM
       slop (~> 3.0)
     slop (3.6.0)
     unicode_utils (1.4.0)
-    yard (0.8.7.6)
+    yard (0.9.26)
 
 PLATFORMS
   ruby
