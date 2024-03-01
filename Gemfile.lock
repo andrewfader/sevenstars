@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/andrewfader/chingu.git
+  remote: https://github.com/andrewfader/chingu.git
   revision: 83043292f7273bcbefb8f3821ab9765b3ebc6e9d
   specs:
     chingu (0.9rc9)
@@ -41,7 +41,7 @@ GEM
       slop (~> 3.0)
     slop (3.6.0)
     unicode_utils (1.4.0)
-    yard (0.9.26)
+    yard (0.9.36)
 
 PLATFORMS
   ruby
